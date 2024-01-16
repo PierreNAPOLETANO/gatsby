@@ -130,10 +130,5 @@ export const getRepositoryId = (): IRepositoryId => {
     getGitRemoteWithGit() ||
     getRepositoryFromNetlifyEnv() ||
     getRepositoryFromHerokuEnv()
-  if (gitRepo) {
-    return gitRepo
-  } else {
-    const repo = getRepositoryIdFromPath()
-    return { repositoryId: `pwd:${hash(repo)}` }
-  }
+  return gitRepo ?? { repositoryId: `pwd:${hash(getRepositoryIdFromPath())}` }
 }

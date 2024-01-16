@@ -268,11 +268,8 @@ export function generateImageData(
     reporter.warn(
       `[${pluginName}] Specifying both 'jpg' and 'png' formats is not supported. Using 'auto' instead`
     )
-    if (sourceMetadata.format === `jpg`) {
-      formats.delete(`png`)
-    } else {
-      formats.delete(`jpg`)
-    }
+    const imgFormat = sourceMetadata.format === `jpg` ? 'png' : 'jpg'
+    formats.delete(imgFormat)
   }
 
   const imageSizes = calculateImageSizes({ ...args, sourceMetadata })
@@ -433,11 +430,9 @@ export function fixedImageSizes({
   }
 
   if (!width) {
-    if (!height) {
-      width = DEFAULT_FIXED_WIDTH
-    } else {
-      width = Math.round(height * aspectRatio)
-    }
+    width = !height
+      ? DEFAULT_FIXED_WIDTH
+      : Math.round(height * aspectRatio)
   } else if (!height) {
     height = Math.round(width / aspectRatio)
   }

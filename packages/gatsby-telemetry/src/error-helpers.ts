@@ -37,8 +37,7 @@ export function sanitizeError(
 ): string {
   // Convert Buffers to Strings
   if (error.stderr) error.stderr = String(error.stderr)
-  if (error.stdout)
-    error.stdout = String(error.stdout)
+  if (error.stdout) error.stdout = String(error.stdout)
 
     // Remove sensitive and useless keys
   ;[`envPairs`, `options`, `output`].forEach(key => delete error[key])
