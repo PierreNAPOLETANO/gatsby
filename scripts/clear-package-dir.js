@@ -48,14 +48,7 @@ const verbose = argv[`dry-run`] || argv[`verbose`]
 const buildIgnoreArray = str =>
   str
     .split(`\n`)
-    .filter(line => {
-      // skip empty lines and comments
-      if (!line || line[0] === `#`) {
-        return false
-      }
-
-      return true
-    })
+    .filter(line => line && line[0] !== '#')
     .reduce((acc, item) => {
       acc.push(item)
 

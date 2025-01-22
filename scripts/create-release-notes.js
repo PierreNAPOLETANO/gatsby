@@ -74,7 +74,7 @@ async function run() {
 
   const previousRelease =
     releaseParts[1] == `0`
-      ? `UNKNOWN`
+      ? 'UNKNOWN'
       : `${releaseParts[0]}.${parseInt(releaseParts[1]) - 1}`
 
   // TODO check how many releases were already done this month
